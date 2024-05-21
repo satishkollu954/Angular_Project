@@ -29,7 +29,7 @@ export class TaskListComponent implements OnInit {
   selectedClient: any;
   taskOptions: string[] = [];
   teamMembers: string[] = [];
-  currentUser = { username: 'john' }; // Assuming currentUser is obtained from authentication
+  currentUser = { username: 'user123' }; // Assuming currentUser is obtained from authentication
 
   private dummyTasks: Task[] = [
     { id: 1, TeammemberDetails: 'user123', clientInformation: { name: 'Client 1', projectName: 'Project 1', email: 'client1@example.com' }, title: 'Task 1', createdDate: '2024-05-01', Completeddate: '2024-06-01', status: 'Pending', priority: 'Low', newTeammemberDetails: '' },
