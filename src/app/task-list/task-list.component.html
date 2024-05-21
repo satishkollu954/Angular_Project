@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="filter-container">
+    <app-task-filter (filterChange)="onFilterChanged($event)"></app-task-filter>
+  </div>
+
+  <!-- Profile icon -->
+  <div class="profile-icon-container">
+    <app-profile-icon></app-profile-icon>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Task Id</th>
+          <th>Team Member Details</th>
+          <th (click)="showClientDetailsHeader()">Client Information</th>
+          <th>Title</th>
+          <th>Created Date</th>
+          <th>Completed Date</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Reassign</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.id }}</td>
+          <td>{{ task.TeammemberDetails }}</td>
+          <td (click)="showClientDetails(task)">Click info {{ task.id }}</td>
+          <td>{{ task.title }}</td>
+          <td>{{ task.createdDate }}</td>
+          <td>{{ task.Completeddate }}</td>
+          <td>
+            <select [(ngModel)]="task.status" (change)="onStatusChange(task)" [disabled]="currentUser.username !== task.TeammemberDetails">
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </td>
+          <td>
+            <select [(ngModel)]="task.priority" (change)="onPriorityChange(task)" [disabled]="currentUser.username !== task.TeammemberDetails">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </td>
+          <td>
+            <select [(ngModel)]="task.newTeammemberDetails" (change)="reassignTask(task)" [disabled]="currentUser.username !== task.TeammemberDetails">
+              <option *ngFor="let member of teamMembers" [value]="member">{{ member }}</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-container">
+    <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage <= 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage >= totalPages">Next</button>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<!-- src/app/task-filter/task-filter.component.html -->
+<div class="filter-container">
+    <input type="date" [(ngModel)]="filterParams.fromDate" placeholder="From Date" />
+    <input type="date" [(ngModel)]="filterParams.toDate" placeholder="To Date" />
+    <div>
+        <!-- Add your filter input fields here -->
+        <select [(ngModel)]="filterParams.status"  name="status" >
+          <option  value="">All</option>
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+        
+      </div>
+      <button style="margin-left: 10px;" (click)="applyFilter()">Apply Filter</button>
+      
+  <!-- //  <button (click)="applyFilter()">Filter</button> -->
+  </div>
+  

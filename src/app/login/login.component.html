@@ -1,0 +1,33 @@
+<div class="login-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Username input -->
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username">
+        <div *ngIf="f['username'].errors && (f['username'].dirty || f['username'].touched)" class="error">
+          <div *ngIf="f['username'].errors['required']">Username is required</div>
+          <div *ngIf="f['username'].errors['minlength']">Username must be at least 5 characters</div>
+        </div>
+      </div>
+  
+      <!-- Password input -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password">
+        <div *ngIf="f['password'].errors && (f['password'].dirty || f['password'].touched)" class="error">
+          <div *ngIf="f['password'].errors['required']">Password is required</div>
+          <div *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters</div>
+        </div>
+      </div>
+  
+      <!-- Error message for invalid login -->
+      <div *ngIf="invalidLogin" class="error">
+        Invalid username or password. Please enter correct credentials.
+      </div>
+  
+      <!-- Submit button -->
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  
